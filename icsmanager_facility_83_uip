@@ -1,0 +1,67 @@
+require "json"
+require "selenium-webdriver"
+require "rspec"
+include RSpec::Expectations
+
+describe "RubyRspec" do
+
+  before(:each) do
+    @driver = Selenium::WebDriver.for :firefox
+    @base_url = "http://icsmanagertest.icservices.mtnsat.com/"
+    @accept_next_alert = true
+    @driver.manage.timeouts.implicit_wait = 30
+    @verification_errors = []
+  end
+  
+  after(:each) do
+    @driver.quit
+    @verification_errors.should == []
+  end
+  
+  it "test_ruby_rspec" do
+    @driver.get(@base_url + "/Login.aspx")
+    @driver.find_element(:id, "txtUserName").clear
+    @driver.find_element(:id, "txtUserName").send_keys "max.toedtemeier"
+    @driver.find_element(:id, "txtPassword").clear
+    @driver.find_element(:id, "txtPassword").send_keys "zaqwsx"
+    @driver.find_element(:id, "btnGo").click
+    # ERROR: Caught exception [ReferenceError: selectLocator is not defined]
+    @driver.find_element(:css, "option[value=\"83\"]").click
+    @driver.find_element(:id, "ctl00_Menu1_dlTabs_ctl00_AMenu").click
+    @driver.find_element(:css, "#__tab_ctl00_ContentPlaceHolder1_Tabs_pIP > span").click
+    verify { (@driver.find_element(:id, "ctl00_ContentPlaceHolder1_Tabs_pIP_IPs1_dgIPs_ctl04_IP").attribute("value")).should == "10.152.37.20" }
+  end
+  
+  def element_present?(how, what)
+    @driver.find_element(how, what)
+    true
+  rescue Selenium::WebDriver::Error::NoSuchElementError
+    false
+  end
+  
+  def alert_present?()
+    @driver.switch_to.alert
+    true
+  rescue Selenium::WebDriver::Error::NoAlertPresentError
+    false
+  end
+  
+  def verify(&blk)
+    yield
+  rescue ExpectationNotMetError => ex
+    @verification_errors << ex
+  end
+  
+  def close_alert_and_get_its_text(how, what)
+    alert = @driver.switch_to().alert()
+    alert_text = alert.text
+    if (@accept_next_alert) then
+      alert.accept()
+    else
+      alert.dismiss()
+    end
+    alert_text
+  ensure
+    @accept_next_alert = true
+  end
+end
