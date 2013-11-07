@@ -7,7 +7,8 @@ describe "RubyRspec" do
 
   before(:each) do
     @caps = Selenium::WebDriver::Remote::Capabilities.htmlunit(:javascript_enabled => true)
-    @driver = Selenium::WebDriver.for :remote, :url => "https://www.google.com", :desired_capabilities => @caps
+    @driver = Selenium::WebDriver.for :remote, :desired_capabilities => @caps
+    @url = "https://icsmanagertest.icservices.mtnsat.com"
     @accept_next_alert = true
     @driver.manage.timeouts.implicit_wait = 30
     @verification_errors = []
@@ -19,7 +20,7 @@ describe "RubyRspec" do
   
   it "test_ruby_rspec" do
     puts "Page url is #{driver.url}"
-    @driver.get("")
+    @driver.get(@url + "/Login.aspx")
     @driver.find_element(:id, "txtUserName").clear
     @driver.find_element(:id, "txtUserName").send_keys "max.toedtemeier"
     @driver.find_element(:id, "txtPassword").clear
