@@ -7,7 +7,7 @@ describe "RubyRspec" do
 
   before(:each) do
     @caps = Selenium::WebDriver::Remote::Capabilities.htmlunit(:javascript_enabled => true)
-    @driver = Selenium::WebDriver.for :remote, :url => "http://www.google.com", :desired_capabilities => @caps
+    @driver = Selenium::WebDriver.for :remote, :url => "https://www.google.com", :desired_capabilities => @caps
     @accept_next_alert = true
     @driver.manage.timeouts.implicit_wait = 30
     @verification_errors = []
