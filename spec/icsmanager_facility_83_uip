@@ -6,8 +6,8 @@ include RSpec::Expectations
 describe "RubyRspec" do
 
   before(:each) do
-    @driver = Selenium:HTMLUNIT
     @base_url = "http://icsmanagertest.icservices.mtnsat.com/"
+    @driver  = Selenium::WebDriver.for :remote, :url => @base_url, :desired_capabilities => :htmlunit
     @accept_next_alert = true
     @driver.manage.timeouts.implicit_wait = 30
     @verification_errors = []
