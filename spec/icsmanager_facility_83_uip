@@ -18,6 +18,7 @@ describe "RubyRspec" do
   end
   
   it "test_ruby_rspec" do
+    puts "Page url is #{driver.url}"
     @driver.get("")
     @driver.find_element(:id, "txtUserName").clear
     @driver.find_element(:id, "txtUserName").send_keys "max.toedtemeier"
