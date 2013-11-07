@@ -6,7 +6,7 @@ include RSpec::Expectations
 describe "RubyRspec" do
 
   before(:each) do
-    @driver = Selenium::WebDriver.for :firefox
+    @driver = Selenium:HTMLUNIT
     @base_url = "http://icsmanagertest.icservices.mtnsat.com/"
     @accept_next_alert = true
     @driver.manage.timeouts.implicit_wait = 30
