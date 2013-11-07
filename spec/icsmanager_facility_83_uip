@@ -6,7 +6,7 @@ include RSpec::Expectations
 describe "RubyRspec" do
 
   before(:each) do
-    @driver  = Selenium::WebDriver.for :remote, :url => "http://icsmanagertest.icservices.mtnsat.com/", :desired_capabilities => :htmlunit
+    @driver  = Selenium::WebDriver.for :remote, :url => "http://icsmanagertest.icservices.mtnsat.com/Login.aspx", :desired_capabilities => :htmlunit
     @base_url = "http://icsmanagertest.icservices.mtnsat.com/"
     @accept_next_alert = true
     @driver.manage.timeouts.implicit_wait = 30
@@ -19,7 +19,6 @@ describe "RubyRspec" do
   end
   
   it "test_ruby_rspec" do
-    @driver.get(@base_url + "/Login.aspx")
     @driver.find_element(:id, "txtUserName").clear
     @driver.find_element(:id, "txtUserName").send_keys "max.toedtemeier"
     @driver.find_element(:id, "txtPassword").clear
