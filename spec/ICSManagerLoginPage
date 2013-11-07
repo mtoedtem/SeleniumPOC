@@ -1,0 +1,11 @@
+require 'rspec/rails'
+require 'capybara/rspec'
+require 'capybara/rails'
+
+describe 'the login page' do
+  it 'has the required fields' do
+    visit 'http://icsmanagertest.icservices.mtnsat.com/Login.aspx'
+    page.should have_content('User Name:')
+    page.should have_content('Password:')
+  end
+end
