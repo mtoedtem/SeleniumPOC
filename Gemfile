@@ -1,6 +1,4 @@
 source 'https://rubygems.org'
 gem 'selenium-webdriver'
-gem 'capybara'
-gem 'capybara-rspec'
 gem 'json'
 gem 'rspec'
