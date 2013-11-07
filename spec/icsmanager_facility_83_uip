@@ -8,8 +8,7 @@ describe "RubyRspec" do
   before(:each) do
     @caps = Selenium::WebDriver::Remote::Capabilities.htmlunit(:javascript_enabled => true)
     @driver = {
-      Selenium::WebDriver.for 
-      :remote, 
+      Selenium::WebDriver.for  :remote, 
       :url => "http://icsmanagertest.icservices.mtnsat.com/Login.aspx", 
       :desired_capabilities => @caps, 
       :platform => "WINDOWS"
