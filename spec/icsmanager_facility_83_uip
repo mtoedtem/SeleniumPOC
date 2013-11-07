@@ -19,7 +19,6 @@ describe "RubyRspec" do
   end
   
   it "test_ruby_rspec" do
-    @driver.get("")
     @driver.find_element(:id, "txtUserName").clear
     @driver.find_element(:id, "txtUserName").send_keys "max.toedtemeier"
     @driver.find_element(:id, "txtPassword").clear
